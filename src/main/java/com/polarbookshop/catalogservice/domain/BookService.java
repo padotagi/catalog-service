@@ -1,4 +1,4 @@
-package com.poloarbookshop.catalogservice.domain;
+package com.polarbookshop.catalogservice.domain;
 
 import org.springframework.stereotype.Service;
 
@@ -35,12 +35,17 @@ public class BookService {
         return bookRepository.findByIsbn(isbn)
                 .map(existingBook -> {
                     var bookToUpdate = new Book(
+                            existingBook.id(),
                             existingBook.isbn(),
                             book.title(),
                             book.author(),
-                            book.price());
+                            book.price(),
+                            existingBook.createdDate(),
+                            existingBook.lastModifiedDate(),
+                            existingBook.version());
                     return bookRepository.save(bookToUpdate);
                 })
                 .orElseGet(() -> addBookToCatalog(book));
     }
+
 }

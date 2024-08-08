@@ -1,10 +1,10 @@
-package com.poloarbookshop.catalogservice.web;
+package com.polarbookshop.catalogservice.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
-import com.poloarbookshop.catalogservice.domain.Book;
+import com.polarbookshop.catalogservice.domain.Book;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,8 +16,10 @@ class BookJsonTests {
 
     @Test
     void testSerialize() throws Exception {
-        var book = new Book("1234567890", "Title", "Author", 9.90);
+        var book = Book.of("1234567890", "Title", "Author", 9.90);
         var jsonContent = json.write(book);
+        assertThat(jsonContent).extractingJsonPathNumberValue("@.id")
+                .isEqualTo(book.id());
         assertThat(jsonContent).extractingJsonPathStringValue("@.isbn")
                 .isEqualTo(book.isbn());
         assertThat(jsonContent).extractingJsonPathStringValue("@.title")
@@ -26,6 +28,8 @@ class BookJsonTests {
                 .isEqualTo(book.author());
         assertThat(jsonContent).extractingJsonPathNumberValue("@.price")
                 .isEqualTo(book.price());
+        assertThat(jsonContent).extractingJsonPathNumberValue("@.version")
+                .isEqualTo(book.version());
     }
 
     @Test

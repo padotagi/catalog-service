@@ -1,6 +1,6 @@
-package com.poloarbookshop.catalogservice.domain;
+package com.polarbookshop.catalogservice.domain;
 
-import jakarta.validation.*;
+import javax.validation.*;
 import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.*;
@@ -18,7 +18,7 @@ class BookValidationTests {
     @Test
     void whenAllFieldsCorrectThenValidationSucceeds() {
         var book =
-                new Book("1234567890", "Title", "Author", 9.90);
+                Book.of("1234567890", "Title", "Author", 9.90);
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).isEmpty();
     }
@@ -26,7 +26,7 @@ class BookValidationTests {
     @Test
     void whenIsbnDefinedButIncorrectThenValidationFails() {
         var book =
-                new Book("a234568790", "Title", "Author", 9.90);
+                Book.of("a234568790", "Title", "Author", 9.90);
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).hasSize(1);
         assertThat(violations.iterator().next().getMessage())

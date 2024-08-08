@@ -1,6 +1,6 @@
-package com.poloarbookshop.catalogservice.domain;
+package com.polarbookshop.catalogservice.domain;
 
-import com.poloarbookshop.catalogservice.web.BookController;
+import com.polarbookshop.catalogservice.web.BookController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

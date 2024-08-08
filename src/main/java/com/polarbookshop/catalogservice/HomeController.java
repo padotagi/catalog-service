@@ -1,6 +1,6 @@
-package com.poloarbookshop.catalogservice;
+package com.polarbookshop.catalogservice;
 
-import com.poloarbookshop.catalogservice.config.PolarProperties;
+import com.polarbookshop.catalogservice.config.PolarProperties;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
