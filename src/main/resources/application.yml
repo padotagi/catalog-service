@@ -30,7 +30,6 @@ spring:
     hikari:
       connection-timeout: 2000 #ms
       maximum-pool-size: 5
-      jdbc-url: jdbc:postgresql://127.0.0.1:5436/polardb_catalog
       username: user
       password: password
 
